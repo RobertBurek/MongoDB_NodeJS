@@ -17,9 +17,9 @@ MongoClient.connect(url, function(err, client){
 var insertDocument = function(db, callback) {
     db.collection('products').insertOne(
         {
-            name: "X-New Product",
-            price: 250,
+            name: "Y-New Product 33",
             category: "software",
+            price: 250,
             stock: 35
         },function(err, result){
             if (err) {
