@@ -1,0 +1,50 @@
+{
+	"name": "Warszawa",
+	"loc": {
+		"type": "Point",
+		"coordinates": [
+			21.0322634,
+			52.2461433
+		]
+	}
+}
+{
+	"name": "Kraków",
+	"loc": {
+		"type": "Point",
+		"coordinates": [
+			19.9633141,
+			50.0551723
+		]
+	}
+}
+{
+	"name": "Wrocław",
+	"loc": {
+		"type": "Point",
+		"coordinates": [
+			17.0301622,
+			51.1176867
+		]
+	}
+}
+{
+	"name": "Poznań",
+	"loc": {
+		"type": "Point",
+		"coordinates": [
+			16.8893091,
+			52.405394
+		]
+	}
+}
+{
+	"name": "Gdańsk",
+	"loc": {
+		"type": "Point",
+		"coordinates": [
+			18.6686523,
+			54.3679106
+		]
+	}
+}

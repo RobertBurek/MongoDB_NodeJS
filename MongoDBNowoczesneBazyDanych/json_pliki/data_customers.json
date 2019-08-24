@@ -1,0 +1,18 @@
+{
+	"_id": 1,
+	"name": "Jan Kowalski",
+	"email": "jkow@strefakursow.pl",
+	"phone": "040-456-000"
+}
+{
+	"_id": 2,
+	"name": "Paweł Fizyk",
+	"email": "pfiz@somerandomemail.com",
+	"phone": "34-000-111-222"
+}
+{
+	"_id": 3,
+	"name": "Krzysztof Nowak",
+	"email": "know@anotherrandomemail.com",
+	"phone": "424-411-909"
+}

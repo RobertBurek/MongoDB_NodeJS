@@ -1,0 +1,1 @@
+{"options":{"validator":{"username":{"$exists":true},"name":{"$type":"string"}},"validationLevel":"strict","validationAction":"error"},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"db_kurs_mongo.people"}],"uuid":"74d9639a765d42a084af26a50261c24d"}

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"db_kurs_mongo.clients"}],"uuid":"85f88c57b3c64be8acba041c27946a06"}

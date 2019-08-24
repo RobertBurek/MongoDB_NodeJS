@@ -1,0 +1,20 @@
+{
+	"_id": 1001,
+	"items": [4,56,2],
+	"customer_id": 1	
+}
+{
+	"_id": 1002,
+	"items": [54,3,22],
+	"customer_id": 3	
+}
+{
+	"_id": 1003,
+	"items": [10,2,45],
+	"customer_id": 2	
+}
+{
+	"_id": 1004,
+	"items": [4,56,9],
+	"customer_id": 2	
+}

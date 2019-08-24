@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"db_kurs_mongo.logs"},{"v":{"$numberInt":"2"},"key":{"created_id":{"$numberDouble":"1.0"}},"name":"created_id_1","ns":"db_kurs_mongo.logs","expireAfterSeconds":{"$numberDouble":"70.0"}}],"uuid":"16fd88d29cdb4a9ebaaec09430434417"}
