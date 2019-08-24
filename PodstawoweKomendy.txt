@@ -1,0 +1,1429 @@
+c:\mongod
+c:\mongo
+
+>db.articles.insert({title:"JAk to dzia³a", author: "Robert"})
+WriteResult({ "nInserted" : 1 })
+> db.articles.find()
+{ "_id" : ObjectId("5d5d931c2b69647c084d35f6"), "title" : "JAk to dzia³a", "author" : "Robert" }
+
+
+> var x =1;
+> x;
+1
+> var title="to coœ nowego";
+> title
+to coœ nowego
+
+> function sum(a, b) { return a + b};
+> sum(8,9);
+17
+
+var sum = function(a, b) {
+... var result = a + b;
+... return result;
+... }
+> sum;
+function(a, b) {
+var result = a + b;
+return result;
+}
+> sum(2, 4);
+6
+
+> cls
+> quit()
+> ^C
+
+db = connect("localhost:27017/test"); -->app.js
+load("d:/mongodbnowoczesnebazydanych/app.js");
+connecting to: mongodb://localhost:27017/test
+Implicit session: session { "id" : UUID("b6de4179-d2af-4cb1-bc3d-062a37053888") }
+MongoDB server version: 4.2.0
+true
+
+
+db = connect("localhost:27017/test");
+print("Polaczenie OK...");
+
+> load("d:/mongodbnowoczesnebazydanych/app.js");
+connecting to: mongodb://localhost:27017/test
+Implicit session: session { "id" : UUID("ba0a5e2a-c746-4663-97a7-4b83d5a33993") }
+MongoDB server version: 4.2.0
+Polaczenie OK...
+true
+
+dokument
+{
+name: "Robert",
+age: 45,
+city: "Warszawa"
+}
+
+kolekcja
+{
+name: "Robert",
+age: 45,
+city: "Warszawa"
+}
+{
+name: "Roman",
+age: 43,
+city: "Poznan"
+}
+{
+name: "Monika",
+age: 34,
+city: "Koszalin"
+}
+
+> use db_kurs_mongo
+switched to db db_kurs_mongo
+
+C:\>mongoimport --db db_kurs_mongo --collection products --drop --file d:/MongoDBNowoczesneBazyDanych/json_pliki/data.json
+2019-08-21T21:47:02.457+0200    connected to: mongodb://localhost/
+2019-08-21T21:47:02.467+0200    dropping: db_kurs_mongo.products
+2019-08-21T21:47:02.492+0200    10 document(s) imported successfully. 0 document(s) failed to import.
+
+> use db_kurs_mongo
+switched to db db_kurs_mongo
+> db.products.find();
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0867"), "name" : "Tech Tamdex USB", "category" : "accessories", "price" : 60, "stock" : 120, "attributes" : { "type" : "keyboard" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "category" : "software", "price" : 59, "stock" : 56, "attributes" : { "os" : "osx", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0869"), "name" : "Lamfix Home Edition", "category" : "software", "price" : 120, "stock" : 78, "attributes" : { "os" : "windows", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086b"), "name" : "Silverwarm PC Case", "category" : "accessories", "price" : 120, "stock" : 30, "attributes" : { "type" : "pc-case" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "category" : "phones", "price" : 399, "stock" : 23, "attributes" : { "os" : "Android", "memory" : 4 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086d"), "name" : "Scotfresh Vision", "category" : "displays", "price" : 799, "stock" : 4, "attributes" : { "size" : 24, "interface" : "hdmi" } }
+
+> db.products.find({name: "Freeplus Mouse"});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+
+
+> db.products.find({category: "phones"});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "category" : "phones", "price" : 399, "stock" : 23, "attributes" : { "os" : "Android", "memory" : 4 } }
+
+
+> db.products.find({"attributes.os":"windows"});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0869"), "name" : "Lamfix Home Edition", "category" : "software", "price" : 120, "stock" : 78, "attributes" : { "os" : "windows", "licence" : "home" } }
+
+> db.products.find({price :49});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+
+> db.products.find({price : { $eq: 49}});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+
+> db.products.find({price : { $gt: 300}});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "category" : "phones", "price" : 399, "stock" : 23, "attributes" : { "os" : "Android", "memory" : 4 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086d"), "name" : "Scotfresh Vision", "category" : "displays", "price" : 799, "stock" : 4, "attributes" : { "size" : 24, "interface" : "hdmi" } }
+
+> db.products.find({price : { $lt: 70}});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0867"), "name" : "Tech Tamdex USB", "category" : "accessories", "price" : 60, "stock" : 120, "attributes" : { "type" : "keyboard" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "category" : "software", "price" : 59, "stock" : 56, "attributes" : { "os" : "osx", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+
+> db.products.find({category : { $ne: "accessories"}});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "category" : "software", "price" : 59, "stock" : 56, "attributes" : { "os" : "osx", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0869"), "name" : "Lamfix Home Edition", "category" : "software", "price" : 120, "stock" : 78, "attributes" : { "os" : "windows", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "category" : "phones", "price" : 399, "stock" : 23, "attributes" : { "os" : "Android", "memory" : 4 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086d"), "name" : "Scotfresh Vision", "category" : "displays", "price" : 799, "stock" : 4, "attributes" : { "size" : 24, "interface" : "hdmi" } }
+
+> db.products.find({category : "accessories", stock: { $gt: 100}});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0867"), "name" : "Tech Tamdex USB", "category" : "accessories", "price" : 60, "stock" : 120, "attributes" : { "type" : "keyboard" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+
+> db.products.find({ $or: [{category : "accessories"},{category: "phones"}]});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0867"), "name" : "Tech Tamdex USB", "category" : "accessories", "price" : 60, "stock" : 120, "attributes" : { "type" : "keyboard" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086b"), "name" : "Silverwarm PC Case", "category" : "accessories", "price" : 120, "stock" : 30, "attributes" : { "type" : "pc-case" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "category" : "phones", "price" : 399, "stock" : 23, "attributes" : { "os" : "Android", "memory" : 4 } }
+
+> db.products.find({ $nor: [{category : "accessories"},{category: "phones"}]});
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "category" : "software", "price" : 59, "stock" : 56, "attributes" : { "os" : "osx", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0869"), "name" : "Lamfix Home Edition", "category" : "software", "price" : 120, "stock" : 78, "attributes" : { "os" : "windows", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086d"), "name" : "Scotfresh Vision", "category" : "displays", "price" : 799, "stock" : 4, "attributes" : { "size" : 24, "interface" : "hdmi" } }
+
+
+kursor
+> var cursor = db.products.find({category : "accessories"});
+> while ( cursor.hasNext()){
+... print(tojson(cursor.next()));
+... }
+{
+        "_id" : ObjectId("5d5d9fb65a652f64682b0867"),
+        "name" : "Tech Tamdex USB",
+        "category" : "accessories",
+        "price" : 60,
+        "stock" : 120,
+        "attributes" : {
+                "type" : "keyboard"
+        }
+}
+{
+        "_id" : ObjectId("5d5d9fb65a652f64682b086a"),
+        "name" : "Freeplus Mouse",
+        "category" : "accessories",
+        "price" : 49,
+        "stock" : 167,
+        "attributes" : {
+                "type" : "mouse"
+        }
+}
+{
+        "_id" : ObjectId("5d5d9fb65a652f64682b086b"),
+        "name" : "Silverwarm PC Case",
+        "category" : "accessories",
+        "price" : 120,
+        "stock" : 30,
+        "attributes" : {
+                "type" : "pc-case"
+        }
+}
+
+
+> var cursor = db.products.find({category : "accessories"});
+> var myArray = cursor.toArray();
+> var document = myArray[0];
+> document;
+{
+        "_id" : ObjectId("5d5d9fb65a652f64682b0867"),
+        "name" : "Tech Tamdex USB",
+        "category" : "accessories",
+        "price" : 60,
+        "stock" : 120,
+        "attributes" : {
+                "type" : "keyboard"
+        }
+}
+
+> var document = myArray[2];
+> document;
+{
+        "_id" : ObjectId("5d5d9fb65a652f64682b086b"),
+        "name" : "Silverwarm PC Case",
+        "category" : "accessories",
+        "price" : 120,
+        "stock" : 30,
+        "attributes" : {
+                "type" : "pc-case"
+        }
+}
+> var document = myArray[3];
+> document;
+>
+
+
+> db.customers.insert({
+... firstname:"Jan",
+... lastname:"Nowak",
+... address:[{city:"Torun", zipcode:"33-100"}]
+... })
+WriteResult({ "nInserted" : 1 })
+
+> db.customers.find();
+{ "_id" : ObjectId("5d5dac66db4a29bc64bfd783"), "firstname" : "Jan", "lastname" : "Nowak", "address" : [ { "city" : "Torun", "zipcode" : "33-100" } ] }
+
+> var newCustomers =
+... [
+... {
+... firsname:"Tomasz",
+... lastname:"Makowski"
+... },
+... {
+... firstname:"Monika",
+... lastname:"nowak"
+... }
+... ]
+
+> newCustomers;
+[
+        {
+                "firstname" : "Tomasz",
+                "lastname" : "Makowski"
+        },
+        {
+                "firstname" : "Monika",
+                "lastname" : "nowak"
+        }
+]
+
+> db.customers.insert(newCustomers);
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 2,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+> db.customers.find();
+{ "_id" : ObjectId("5d5dac66db4a29bc64bfd783"), "firstname" : "Jan", "lastname" : "Nowak", "address" : [ { "city" : "Torun", "zipcode" : "33-100" } ] }
+{ "_id" : ObjectId("5d5dae49db4a29bc64bfd784"), "firstname" : "Tomasz", "lastname" : "Makowski" }
+{ "_id" : ObjectId("5d5dae49db4a29bc64bfd785"), "firstname" : "Monika", "lastname" : "nowak" }
+
+
+> db.customers.update(
+... {firstname:"Jan"},
+... { $set: { email: "janNowak@wp.pl"}
+... }
+... )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.customers.find({firstname:"Jan"});
+{ "_id" : ObjectId("5d5dac66db4a29bc64bfd783"), "firstname" : "Jan", "lastname" : "Nowak", "address" : [ { "city" : "Torun", "zipcode" : "33-100" } ], "email" : "janNowak@wp.pl" }
+
+
+> db.customers.update(
+... {},
+... { $set: { group: "customer"}},
+... { multi: true}
+... )
+WriteResult({ "nMatched" : 3, "nUpserted" : 0, "nModified" : 3 })
+> db.customers.find();
+{ "_id" : ObjectId("5d5dac66db4a29bc64bfd783"), "firstname" : "Jan", "lastname" : "Nowak", "address" : [ { "city" : "Torun", "zipcode" : "33-100" } ], "email" : "janNowak@wp.pl", "group" : "customer" }
+{ "_id" : ObjectId("5d5dae49db4a29bc64bfd784"), "firstname" : "Tomasz", "lastname" : "Makowski", "group" : "customer" }
+{ "_id" : ObjectId("5d5dae49db4a29bc64bfd785"), "firstname" : "Monika", "lastname" : "nowak", "group" : "customer" }
+
+
+> db.customers.update(
+... {},
+... { $unset: {group: ""}},
+... { multi :true}
+... )
+WriteResult({ "nMatched" : 3, "nUpserted" : 0, "nModified" : 3 })
+> db.customers.find();
+{ "_id" : ObjectId("5d5dac66db4a29bc64bfd783"), "firstname" : "Jan", "lastname" : "Nowak", "address" : [ { "city" : "Torun", "zipcode" : "33-100" } ], "email" : "janNowak@wp.pl" }
+{ "_id" : ObjectId("5d5dae49db4a29bc64bfd784"), "firstname" : "Tomasz", "lastname" : "Makowski" }
+{ "_id" : ObjectId("5d5dae49db4a29bc64bfd785"), "firstname" : "Monika", "lastname" : "nowak" }
+
+
+
+> db.customers.insert({ lastname: 44547})
+WriteResult({ "nInserted" : 1 })
+> db.customers.find();
+{ "_id" : ObjectId("5d5dac66db4a29bc64bfd783"), "firstname" : "Jan", "lastname" : "Nowak", "address" : [ { "city" : "Torun", "zipcode" : "33-100" } ], "email" : "janNowak@wp.pl" }
+{ "_id" : ObjectId("5d5dae49db4a29bc64bfd784"), "firstname" : "Tomasz", "lastname" : "Makowski" }
+{ "_id" : ObjectId("5d5dae49db4a29bc64bfd785"), "firstname" : "Monika", "lastname" : "nowak" }
+{ "_id" : ObjectId("5d5e6b57db4a29bc64bfd786"), "lastname" : 44547 }
+> db.customers.remove({lastname:44547})
+WriteResult({ "nRemoved" : 1 })
+> db.customers.find();
+{ "_id" : ObjectId("5d5dac66db4a29bc64bfd783"), "firstname" : "Jan", "lastname" : "Nowak", "address" : [ { "city" : "Torun", "zipcode" : "33-100" } ], "email" : "janNowak@wp.pl" }
+{ "_id" : ObjectId("5d5dae49db4a29bc64bfd784"), "firstname" : "Tomasz", "lastname" : "Makowski" }
+{ "_id" : ObjectId("5d5dae49db4a29bc64bfd785"), "firstname" : "Monika", "lastname" : "nowak" }
+
+
+> db.customers.drop()
+true
+> db.customers.find();
+>
+
+
+> db.products.find({name: { $exist: true}})
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "unknown operator: $exist",
+        "code" : 2,
+        "codeName" : "BadValue"
+}
+
+> db.products.find({name: { $exists: true}})
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0867"), "name" : "Tech Tamdex USB", "category" : "accessories", "price" : 60, "stock" : 120, "attributes" : { "type" : "keyboard" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "category" : "software", "price" : 59, "stock" : 56, "attributes" : { "os" : "osx", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0869"), "name" : "Lamfix Home Edition", "category" : "software", "price" : 120, "stock" : 78, "attributes" : { "os" : "windows", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086b"), "name" : "Silverwarm PC Case", "category" : "accessories", "price" : 120, "stock" : 30, "attributes" : { "type" : "pc-case" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "category" : "phones", "price" : 399, "stock" : 23, "attributes" : { "os" : "Android", "memory" : 4 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086d"), "name" : "Scotfresh Vision", "category" : "displays", "price" : 799, "stock" : 4, "attributes" : { "size" : 24, "interface" : "hdmi" } }
+
+> db.products.find({"attributes.os": { $exists: true}})
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "category" : "software", "price" : 59, "stock" : 56, "attributes" : { "os" : "osx", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0869"), "name" : "Lamfix Home Edition", "category" : "software", "price" : 120, "stock" : 78, "attributes" : { "os" : "windows", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "category" : "phones", "price" : 399, "stock" : 23, "attributes" : { "os" : "Android", "memory" : 4 } }
+
+
+
+C:\>mongoimport --db db_kurs_mongo --collection scores --drop --file d:/MongoDBNowoczesneBazyDanych/json_pliki/scores_data.json
+2019-08-22T12:29:24.034+0200    connected to: mongodb://localhost/
+2019-08-22T12:29:24.045+0200    dropping: db_kurs_mongo.scores
+2019-08-22T12:29:24.067+0200    3 document(s) imported successfully. 0 document(s) failed to import.
+
+c:/mongo
+> use db_kurs_mongo
+switched to db db_kurs_mongo
+> db.scores.find()
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2c"), "firstname" : "Jan", "lastname" : "Kowalski", "scores" : [ 5, 6, 4, 5, 5 ] }
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2d"), "firstname" : "Pawe³", "lastname" : "Nowak", "scores" : [ 5, 2, 4, 3, 2 ] }
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2e"), "firstname" : "Krzysztof", "lastname" : "Nowak", "scores" : [ 4, 3, 4, 5, 4 ] }
+
+> db.scores.find({ scores: [5, 6, 4, 5, 5]})
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2c"), "firstname" : "Jan", "lastname" : "Kowalski", "scores" : [ 5, 6, 4, 5, 5 ] }
+
+> db.scores.find({ scores: 5})
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2c"), "firstname" : "Jan", "lastname" : "Kowalski", "scores" : [ 5, 6, 4, 5, 5 ] }
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2d"), "firstname" : "Pawe³", "lastname" : "Nowak", "scores" : [ 5, 2, 4, 3, 2 ] }
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2e"), "firstname" : "Krzysztof", "lastname" : "Nowak", "scores" : [ 4, 3, 4, 5, 4 ] }
+
+> db.scores.find({ scores: { $elemMatch: { $lt:3}}})
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2d"), "firstname" : "Pawe³", "lastname" : "Nowak", "scores" : [ 5, 2, 4, 3, 2 ] }
+
+> db.scores.find({ "scores.4": 5})
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2c"), "firstname" : "Jan", "lastname" : "Kowalski", "scores" : [ 5, 6, 4, 5, 5 ] }
+
+> db.scores.find({ "scores.4": {$lt: 7} })
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2c"), "firstname" : "Jan", "lastname" : "Kowalski", "scores" : [ 5, 6, 4, 5, 5 ] }
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2d"), "firstname" : "Pawe³", "lastname" : "Nowak", "scores" : [ 5, 2, 4, 3, 2 ] }
+{ "_id" : ObjectId("5d5e6e84448998af597f8e2e"), "firstname" : "Krzysztof", "lastname" : "Nowak", "scores" : [ 4, 3, 4, 5, 4 ] }
+
+> db.products.find({},{name: true, price: true})
+> db.products.find({},{name: 1, price: 1})
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "price" : 1200 }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "price" : 199 }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "price" : 449 }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0867"), "name" : "Tech Tamdex USB", "price" : 60 }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "price" : 59 }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0869"), "name" : "Lamfix Home Edition", "price" : 120 }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "price" : 49 }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086b"), "name" : "Silverwarm PC Case", "price" : 120 }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "price" : 399 }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086d"), "name" : "Scotfresh Vision", "price" : 799 }
+
+> db.products.find({},{ _id: 0, name: 1, price: 1})
+{ "name" : "Intech Professional", "price" : 1200 }
+{ "name" : "Warmsoft Express", "price" : 199 }
+{ "name" : "Sancom X10", "price" : 449 }
+{ "name" : "Tech Tamdex USB", "price" : 60 }
+{ "name" : "Quofan 2016", "price" : 59 }
+{ "name" : "Lamfix Home Edition", "price" : 120 }
+{ "name" : "Freeplus Mouse", "price" : 49 }
+{ "name" : "Silverwarm PC Case", "price" : 120 }
+{ "name" : "Yearlam 2", "price" : 399 }
+{ "name" : "Scotfresh Vision", "price" : 799 }
+
+> db.products.find({name:"Sancom X10"},{ _id: 0, name: 1, price: 1})
+{ "name" : "Sancom X10", "price" : 449 }
+
+> db.products.find({},{ _id: 0})
+
+> db.products.find({"attributes.os": { $exists: true}},{ _id: 0, stock: 0, price: 0})
+{ "name" : "Intech Professional", "category" : "software", "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "name" : "Warmsoft Express", "category" : "software", "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "name" : "Sancom X10", "category" : "phones", "attributes" : { "os" : "android", "memory" : 8 } }
+{ "name" : "Quofan 2016", "category" : "software", "attributes" : { "os" : "osx", "licence" : "home" } }
+{ "name" : "Lamfix Home Edition", "category" : "software", "attributes" : { "os" : "windows", "licence" : "home" } }
+{ "name" : "Yearlam 2", "category" : "phones", "attributes" : { "os" : "Android", "memory" : 4 } }
+
+> db.products.find({"attributes.os": { $exists: true}},{ _id: 0, name: 1, "attributes.os":1})
+{ "name" : "Intech Professional", "attributes" : { "os" : "windows" } }
+{ "name" : "Warmsoft Express", "attributes" : { "os" : "windows" } }
+{ "name" : "Sancom X10", "attributes" : { "os" : "android" } }
+{ "name" : "Quofan 2016", "attributes" : { "os" : "osx" } }
+{ "name" : "Lamfix Home Edition", "attributes" : { "os" : "windows" } }
+{ "name" : "Yearlam 2", "attributes" : { "os" : "Android" } }
+
+> db.products.find().limit(3)
+> db.products.find({},{ _id: 0}).limit(3)
+{ "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+
+> db.products.find({},{ _id: 0, name: 1, category : 1}).limit(4)
+{ "name" : "Intech Professional", "category" : "software" }
+{ "name" : "Warmsoft Express", "category" : "software" }
+{ "name" : "Sancom X10", "category" : "phones" }
+{ "name" : "Tech Tamdex USB", "category" : "accessories" }
+
+> db.products.aggregate({$limit:3})
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+
+
+> db.products.aggregate(
+... [
+... {$sort: {price: -1}}
+... ]
+... )
+
+> db.products.aggregate( [ {$sort: {price: 1}}, {$project: { _id: 0, name: 1, price: 1}} ] )
+{ "name" : "Freeplus Mouse", "price" : 49 }
+{ "name" : "Quofan 2016", "price" : 59 }
+{ "name" : "Tech Tamdex USB", "price" : 60 }
+{ "name" : "Lamfix Home Edition", "price" : 120 }
+{ "name" : "Silverwarm PC Case", "price" : 120 }
+{ "name" : "Warmsoft Express", "price" : 199 }
+{ "name" : "Yearlam 2", "price" : 399 }
+{ "name" : "Sancom X10", "price" : 449 }
+{ "name" : "Scotfresh Vision", "price" : 799 }
+{ "name" : "Intech Professional", "price" : 1200 }
+
+> db.products.aggregate( [ {$sort: {category: 1, price: 1}}, {$project: { _id: 0, category: 1, name: 1, price: 1}} ] )
+> db.products.aggregate( [ {$sort: {category: -1, price: 1}}, {$project: { _id: 0, category: 1, name: 1, price: 1}} ] )
+{ "name" : "Quofan 2016", "category" : "software", "price" : 59 }
+{ "name" : "Lamfix Home Edition", "category" : "software", "price" : 120 }
+{ "name" : "Warmsoft Express", "category" : "software", "price" : 199 }
+{ "name" : "Intech Professional", "category" : "software", "price" : 1200 }
+{ "name" : "Yearlam 2", "category" : "phones", "price" : 399 }
+{ "name" : "Sancom X10", "category" : "phones", "price" : 449 }
+{ "name" : "Scotfresh Vision", "category" : "displays", "price" : 799 }
+{ "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49 }
+{ "name" : "Tech Tamdex USB", "category" : "accessories", "price" : 60 }
+{ "name" : "Silverwarm PC Case", "category" : "accessories", "price" : 120 }
+
+
+> db.products.aggregate(
+... [
+... {$group : {_id: "$category"}}
+... ]
+... )
+{ "_id" : "software" }
+{ "_id" : "phones" }
+{ "_id" : "displays" }
+{ "_id" : "accessories" }
+
+> db.products.aggregate(
+... [
+... {$group : {_id: "$category", noOfProducts: {$sum: 1}}}
+... ]
+... )
+{ "_id" : "software", "noOfProducts" : 4 }
+{ "_id" : "phones", "noOfProducts" : 2 }
+{ "_id" : "displays", "noOfProducts" : 1 }
+{ "_id" : "accessories", "noOfProducts" : 3 }
+
+> db.products.aggregate( [ {$group : {_id: "$category", avgPrice: {$avg: "$price"}}} ] )
+{ "_id" : "phones", "avgPrice" : 424 }
+{ "_id" : "accessories", "avgPrice" : 76.33333333333333 }
+{ "_id" : "displays", "avgPrice" : 799 }
+{ "_id" : "software", "avgPrice" : 394.5 }
+
+> db.products.aggregate( [  {$group : {_id: "$category", avgPrice: {$avg: "$price"}}}, {$sort: {avgPrice: 1}} ])
+{ "_id" : "accessories", "avgPrice" : 76.33333333333333 }
+{ "_id" : "software", "avgPrice" : 394.5 }
+{ "_id" : "phones", "avgPrice" : 424 }
+{ "_id" : "displays", "avgPrice" : 799 }
+
+> db.products.aggregate( [{$group : {_id: "$category", noOfProducts: {$sum: 1}}},
+... {$match: { noOfProducts: { $gt: 3}}}
+... ])
+{ "_id" : "software", "noOfProducts" : 4 }
+
+INDEKSY
+
+indeks prosty
+> db.products.find( { price: {$gt: 100}}, { _id: 0, name: 1, price: 1, cztegory: 1} )
+{ "name" : "Intech Professional", "price" : 1200 }
+{ "name" : "Warmsoft Express", "price" : 199 }
+{ "name" : "Sancom X10", "price" : 449 }
+{ "name" : "Lamfix Home Edition", "price" : 120 }
+{ "name" : "Silverwarm PC Case", "price" : 120 }
+{ "name" : "Yearlam 2", "price" : 399 }
+{ "name" : "Scotfresh Vision", "price" : 799 }
+
+> db.products.createIndex({price: 1})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}
+
+> db.products.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "db_kurs_mongo.products"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "price" : 1
+                },
+                "name" : "price_1",
+                "ns" : "db_kurs_mongo.products"
+        }
+]
+
+> db.products.dropIndex({"price": 1})
+{ "nIndexesWas" : 2, "ok" : 1 }
+
+> db.products.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "db_kurs_mongo.products"
+        }
+]
+
+
+indeks z³o¿ony
+
+> db.products.find(
+... {category: "software", price: { $lt: 100}})
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "category" : "software", "price" : 59, "stock" : 56, "attributes" : { "os" : "osx", "licence" : "home" } }
+
+> db.products.createIndex({ category: 1, price: 1})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}
+
+> db.products.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "db_kurs_mongo.products"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "category" : 1,
+                        "price" : 1
+                },
+                "name" : "category_1_price_1",
+                "ns" : "db_kurs_mongo.products"
+        }
+]
+
+powinno byæ szybciej
+> db.products.find().sort({ category: 1})
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0867"), "name" : "Tech Tamdex USB", "category" : "accessories", "price" : 60, "stock" : 120, "attributes" : { "type" : "keyboard" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086b"), "name" : "Silverwarm PC Case", "category" : "accessories", "price" : 120, "stock" : 30, "attributes" : { "type" : "pc-case" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086d"), "name" : "Scotfresh Vision", "category" : "displays", "price" : 799, "stock" : 4, "attributes" : { "size" : 24, "interface" : "hdmi" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "category" : "phones", "price" : 399, "stock" : 23, "attributes" : { "os" : "Android", "memory" : 4 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "category" : "software", "price" : 59, "stock" : 56, "attributes" : { "os" : "osx", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0869"), "name" : "Lamfix Home Edition", "category" : "software", "price" : 120, "stock" : 78, "attributes" : { "os" : "windows", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+
+
+indeksy unikalne
+
+> db.products.createIndex({ name: 1}, {unique: true})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 2,
+        "numIndexesAfter" : 3,
+        "ok" : 1
+}
+
+> db.products.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "db_kurs_mongo.products"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "category" : 1,
+                        "price" : 1
+                },
+                "name" : "category_1_price_1",
+                "ns" : "db_kurs_mongo.products"
+        },
+        {
+                "v" : 2,
+                "unique" : true,
+                "key" : {
+                        "name" : 1
+                },
+                "name" : "name_1",
+                "ns" : "db_kurs_mongo.products"
+        }
+]
+
+> db.products.insert({name: "Sancom X10"})
+WriteResult({
+        "nInserted" : 0,
+        "writeError" : {
+                "code" : 11000,
+                "errmsg" : "E11000 duplicate key error collection: db_kurs_mongo.products index: name_1 dup key: { name: \"Sancom X10\" }"
+        }
+})
+
+
+indeksy tekstowe
+
+> db.products.createIndex({name: "text"})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 3,
+        "numIndexesAfter" : 4,
+        "ok" : 1
+}
+
+> db.products.find({$text: {$search: "usb"}})
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0867"), "name" : "Tech Tamdex USB", "category" : "accessories", "price" : 60, "stock" : 120, "attributes" : { "type" : "keyboard" } }
+
+> db.products.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "db_kurs_mongo.products"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "category" : 1,
+                        "price" : 1
+                },
+                "name" : "category_1_price_1",
+                "ns" : "db_kurs_mongo.products"
+        },
+        {
+                "v" : 2,
+                "unique" : true,
+                "key" : {
+                        "name" : 1
+                },
+                "name" : "name_1",
+                "ns" : "db_kurs_mongo.products"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "_fts" : "text",
+                        "_ftsx" : 1
+                },
+                "name" : "name_text",
+                "ns" : "db_kurs_mongo.products",
+                "weights" : {
+                        "name" : 1
+                },
+                "default_language" : "english",
+                "language_override" : "language",
+                "textIndexVersion" : 3
+        }
+]
+
+> db.products.dropIndex("name_text")
+{ "nIndexesWas" : 4, "ok" : 1 }
+
+
+> db.products.createIndex({name: "text", category: "text"})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 3,
+        "numIndexesAfter" : 4,
+        "ok" : 1
+}
+
+> db.products.getIndexes()
+[
+        {
+                "v" : 2,
+                "key" : {
+                        "_id" : 1
+                },
+                "name" : "_id_",
+                "ns" : "db_kurs_mongo.products"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "category" : 1,
+                        "price" : 1
+                },
+                "name" : "category_1_price_1",
+                "ns" : "db_kurs_mongo.products"
+        },
+        {
+                "v" : 2,
+                "unique" : true,
+                "key" : {
+                        "name" : 1
+                },
+                "name" : "name_1",
+                "ns" : "db_kurs_mongo.products"
+        },
+        {
+                "v" : 2,
+                "key" : {
+                        "_fts" : "text",
+                        "_ftsx" : 1
+                },
+                "name" : "name_text_category_text",
+                "ns" : "db_kurs_mongo.products",
+                "weights" : {
+                        "category" : 1,
+                        "name" : 1
+                },
+                "default_language" : "english",
+                "language_override" : "language",
+                "textIndexVersion" : 3
+        }
+]
+
+> db.products.find({$text: {$search: "usb"}})
+{ "_id" : ObjectId("5d6013c94e7b0f6997d5564b"), "name" : "Sancom X10 accessories", "category" : "usb driver" }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0867"), "name" : "Tech Tamdex USB", "category" : "accessories", "price" : 60, "stock" : 120, "attributes" : { "type" : "keyboard" } }
+
+Referencja i zagnie¿d¿anie
+
+
+one to one  zagnie¿d¿enie
+> db.clients.insert(
+... {
+... name: "Jan Kowalski",
+... username: "jnowak",
+... contact: {phone: "123-000-000", email: "jnowak@wp.pl"}
+... }
+... )
+WriteResult({ "nInserted" : 1 })
+
+> db.clients.find()
+{ "_id" : ObjectId("5d612f794e7b0f6997d5564c"), "name" : "Jan Kowalski", "username" : "jnowak", "contact" : { "phone" : "123-000-000", "email" : "jnowak@wp.pl" } }
+
+one to mane - zagnie¿d¿enie
+> db.articles.insert( { title:"Modelowanie danych", body:"Tu jest treœæ", author:"Robert",
+... comments:[
+... {user: "Marian", content:"Dobry artyku³"},
+... {user: "Ktoœ", content:"OK"}
+... ]
+... })
+WriteResult({ "nInserted" : 1 })
+
+> db.articles.find()
+{ "_id" : ObjectId("5d61314a4e7b0f6997d5564d"), "title" : "Modelowanie danych", "body" : "Tu jest treœæ", "author" : "Robert", "comments" : [ { "user" : "Marian", "content" : "Dobry artyku³" }, { "user" : "Ktoœ", "content" : "OK" } ] }
+
+
+one to mane - referencje
+
+> db.producers.insert(
+... {
+... _id:"xyz",
+... name:"XYZ Company",
+... phone: "123-123-121",
+... email:"xyz@robbur.pl"
+... }
+... )
+WriteResult({ "nInserted" : 1 })
+
+> db.producers.find()
+{ "_id" : "xyz", "name" : "XYZ Company", "phone" : "123-123-121", "email" : "xyz@robbur.pl" }
+
+> db.items.insert(
+... {
+... name:"USB Cable",
+... sku:"usbc",
+... producer_id:"xyz"
+... })
+WriteResult({ "nInserted" : 1 })
+
+> db.items.insert( { name:"X Phone", sku:"xphone", producer_id:"xyz" })
+WriteResult({ "nInserted" : 1 })
+
+> db.items.find()
+{ "_id" : ObjectId("5d613a874e7b0f6997d5564e"), "name" : "USB Cable", "sku" : "usbc", "producer_id" : "xyz" }
+{ "_id" : ObjectId("5d613af54e7b0f6997d5564f"), "name" : "X Phone", "sku" : "xphone", "producer_id" : "xyz" }
+
+struktury drzewiaste
+
+> db.categoies.insert( { _id:"Mobile", parent: null})
+WriteResult({ "nInserted" : 1 })
+
+> db.categoies.insert( { _id:"Phones", parent: "Mobile"})
+WriteResult({ "nInserted" : 1 })
+
+> db.categoies.find()
+{ "_id" : "Mobile", "parent" : null }
+{ "_id" : "Phones", "parent" : "Mobile" }
+
+> db.categoies.find( { parent: "Mobile"})
+{ "_id" : "Phones", "parent" : "Mobile" }
+
+> db.categoies.findOne( { _id: "Phones"}).parent
+Mobile
+
+>  db.categoies.insert( { _id:"Tables", parent: "Mobile"})
+WriteResult({ "nInserted" : 1 })
+> db.categoies.insert( { _id:"Accessories", parent: "Mobile"})
+WriteResult({ "nInserted" : 1 })
+> db.categoies.find()
+{ "_id" : "Mobile", "parent" : null }
+{ "_id" : "Phones", "parent" : "Mobile" }
+{ "_id" : "Tables", "parent" : "Mobile" }
+{ "_id" : "Accessories", "parent" : "Mobile" }
+> db.categoies.find( { parent: "Mobile"})
+{ "_id" : "Phones", "parent" : "Mobile" }
+{ "_id" : "Tables", "parent" : "Mobile" }
+{ "_id" : "Accessories", "parent" : "Mobile" }
+
+tworzenie kolekcji z warunkami, walidacja
+
+> db.createCollection( "people",
+... {validator: {
+... username: {$exists: true}
+... }
+... })
+{ "ok" : 1 }
+
+> db.people.insert({username: "jnowak", name: "Jan Nowak"})
+WriteResult({ "nInserted" : 1 })
+> db.people.insert({ })
+WriteResult({
+        "nInserted" : 0,
+        "writeError" : {
+                "code" : 121,
+                "errmsg" : "Document failed validation"
+        }
+})
+
+
+> db.runCommand(
+... {collMod: "people",
+... validator: {
+... username: { $exists: true},
+... name: { $exists: true},
+... name: { $type: "string"}
+... }
+... })
+{ "ok" : 1 }
+
+> db.people.insert({ username: "rbur", name: 4444 })
+WriteResult({
+        "nInserted" : 0,
+        "writeError" : {
+                "code" : 121,
+                "errmsg" : "Document failed validation"
+        }
+})
+
+> db.people.insert({ username: "rbur", name: "Robert B" })
+WriteResult({ "nInserted" : 1 })
+
+capped collection
+kolekcja ograniczona bajtami i iloœci¹ dokumentów
+
+> db.createCollection( "logs", {capped: true, size: 4096, max: 3})
+{ "ok" : 1 }
+
+> db.logs.isCapped()
+true
+
+> db.logs.insert({name: "log1"})
+WriteResult({ "nInserted" : 1 })
+> db.logs.insert({name: "log2"})
+WriteResult({ "nInserted" : 1 })
+> db.logs.insert({name: "log3"})
+WriteResult({ "nInserted" : 1 })
+> db.logs.find()
+{ "_id" : ObjectId("5d614fb34e7b0f6997d55654"), "name" : "log1" }
+{ "_id" : ObjectId("5d614fb84e7b0f6997d55655"), "name" : "log2" }
+{ "_id" : ObjectId("5d614fbe4e7b0f6997d55656"), "name" : "log3" }
+> db.logs.insert({name: "log4"})
+WriteResult({ "nInserted" : 1 })
+> db.logs.find()
+{ "_id" : ObjectId("5d614fb84e7b0f6997d55655"), "name" : "log2" }
+{ "_id" : ObjectId("5d614fbe4e7b0f6997d55656"), "name" : "log3" }
+{ "_id" : ObjectId("5d614fcd4e7b0f6997d55657"), "name" : "log4" }
+
+> db.logs.remove({name: "log2"})
+WriteResult({
+        "nRemoved" : 0,
+        "writeError" : {
+                "code" : 20,
+                "errmsg" : "cannot remove from a capped collection: db_kurs_mongo.logs"
+        }
+})
+
+kolekcja ograniczona czasem
+
+> db.logs.insert({ name: "log1", created_id: new Date()})
+WriteResult({ "nInserted" : 1 })
+> db.logs.find()
+{ "_id" : ObjectId("5d6150ff4e7b0f6997d55658"), "name" : "log1", "created_id" : ISODate("2019-08-24T15:00:15.106Z") }
+> db.logs.createIndex( { "created_id" : 1}, {expireAfterSeconds: 70})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}
+
+> db.logs.find()
+{ "_id" : ObjectId("5d6150ff4e7b0f6997d55658"), "name" : "log1", "created_id" : ISODate("2019-08-24T15:00:15.106Z") }
+> db.logs.find()
+>
+
+wydajnoœæ zapytania, indexy
+
+> db.products.find({price: {$gt:200}})
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "category" : "phones", "price" : 399, "stock" : 23, "attributes" : { "os" : "Android", "memory" : 4 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086d"), "name" : "Scotfresh Vision", "category" : "displays", "price" : 799, "stock" : 4, "attributes" : { "size" : 24, "interface" : "hdmi" } }
+
+> db.products.find({price: {$gt:200}}).explain("executionStats")
+{
+        "queryPlanner" : {
+                "plannerVersion" : 1,
+                "namespace" : "db_kurs_mongo.products",
+                "indexFilterSet" : false,
+                "parsedQuery" : {
+                        "price" : {
+                                "$gt" : 200
+                        }
+                },
+                "queryHash" : "CD69FEB3",
+                "planCacheKey" : "BFB56B4E",
+                "winningPlan" : {
+                        "stage" : "COLLSCAN",
+                        "filter" : {
+                                "price" : {
+                                        "$gt" : 200
+                                }
+                        },
+                        "direction" : "forward"
+                },
+                "rejectedPlans" : [ ]
+        },
+        "executionStats" : {
+                "executionSuccess" : true,
+                "nReturned" : 4,
+                "executionTimeMillis" : 1,
+                "totalKeysExamined" : 0,
+                "totalDocsExamined" : 11,
+                "executionStages" : {
+                        "stage" : "COLLSCAN",
+                        "filter" : {
+                                "price" : {
+                                        "$gt" : 200
+                                }
+                        },
+                        "nReturned" : 4,
+                        "executionTimeMillisEstimate" : 0,
+                        "works" : 13,
+                        "advanced" : 4,
+                        "needTime" : 8,
+                        "needYield" : 0,
+                        "saveState" : 0,
+                        "restoreState" : 0,
+                        "isEOF" : 1,
+                        "direction" : "forward",
+                        "docsExamined" : 11
+                }
+        },
+        "serverInfo" : {
+                "host" : "DESKTOP-6CKK7D0",
+                "port" : 27017,
+                "version" : "4.2.0",
+                "gitVersion" : "a4b751dcf51dd249c5865812b390cfd1c0129c30"
+        },
+        "ok" : 1
+}
+
+dodajemy index i sprawdzamy wydajnoœæ
+> db.products.createIndex( { price : 1})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 4,
+        "numIndexesAfter" : 5,
+        "ok" : 1
+}
+
+> db.products.find({price: {$gt:200}}).explain("executionStats")
+{
+        "queryPlanner" : {
+                "plannerVersion" : 1,
+                "namespace" : "db_kurs_mongo.products",
+                "indexFilterSet" : false,
+                "parsedQuery" : {
+                        "price" : {
+                                "$gt" : 200
+                        }
+                },
+                "queryHash" : "CD69FEB3",
+                "planCacheKey" : "520EA51D",
+                "winningPlan" : {
+                        "stage" : "FETCH",
+                        "inputStage" : {
+                                "stage" : "IXSCAN",
+                                "keyPattern" : {
+                                        "price" : 1
+                                },
+                                "indexName" : "price_1",
+                                "isMultiKey" : false,
+                                "multiKeyPaths" : {
+                                        "price" : [ ]
+                                },
+                                "isUnique" : false,
+                                "isSparse" : false,
+                                "isPartial" : false,
+                                "indexVersion" : 2,
+                                "direction" : "forward",
+                                "indexBounds" : {
+                                        "price" : [
+                                                "(200.0, inf.0]"
+                                        ]
+                                }
+                        }
+                },
+                "rejectedPlans" : [ ]
+        },
+        "executionStats" : {
+                "executionSuccess" : true,
+                "nReturned" : 4,
+                "executionTimeMillis" : 4,
+                "totalKeysExamined" : 4,
+                "totalDocsExamined" : 4,
+                "executionStages" : {
+                        "stage" : "FETCH",
+                        "nReturned" : 4,
+                        "executionTimeMillisEstimate" : 0,
+                        "works" : 5,
+                        "advanced" : 4,
+                        "needTime" : 0,
+                        "needYield" : 0,
+                        "saveState" : 0,
+                        "restoreState" : 0,
+                        "isEOF" : 1,
+                        "docsExamined" : 4,
+                        "alreadyHasObj" : 0,
+                        "inputStage" : {
+                                "stage" : "IXSCAN",
+                                "nReturned" : 4,
+                                "executionTimeMillisEstimate" : 0,
+                                "works" : 5,
+                                "advanced" : 4,
+                                "needTime" : 0,
+                                "needYield" : 0,
+                                "saveState" : 0,
+                                "restoreState" : 0,
+                                "isEOF" : 1,
+                                "keyPattern" : {
+                                        "price" : 1
+                                },
+                                "indexName" : "price_1",
+                                "isMultiKey" : false,
+                                "multiKeyPaths" : {
+                                        "price" : [ ]
+                                },
+                                "isUnique" : false,
+                                "isSparse" : false,
+                                "isPartial" : false,
+                                "indexVersion" : 2,
+                                "direction" : "forward",
+                                "indexBounds" : {
+                                        "price" : [
+                                                "(200.0, inf.0]"
+                                        ]
+                                },
+                                "keysExamined" : 4,
+                                "seeks" : 1,
+                                "dupsTested" : 0,
+                                "dupsDropped" : 0
+                        }
+                }
+        },
+        "serverInfo" : {
+                "host" : "DESKTOP-6CKK7D0",
+                "port" : 27017,
+                "version" : "4.2.0",
+                "gitVersion" : "a4b751dcf51dd249c5865812b390cfd1c0129c30"
+        },
+        "ok" : 1
+}
+
+operacja JOIN w MongoDB
+agregacja z ró¿nych kolekcji
+
+C:\>mongoimport --db db_kurs_mongo --collection orders --drop --file d:/MongoDBNowoczesneBazyDanych/json_pliki/data_orders.json
+2019-08-24T17:21:03.742+0200    connected to: mongodb://localhost/
+2019-08-24T17:21:03.817+0200    dropping: db_kurs_mongo.orders
+2019-08-24T17:21:03.832+0200    4 document(s) imported successfully. 0 document(s) failed to import.
+
+C:\>mongoimport --db db_kurs_mongo --collection customers --drop --file d:/MongoDBNowoczesneBazyDanych/json_pliki/data_customers.json
+2019-08-24T17:22:02.245+0200    connected to: mongodb://localhost/
+2019-08-24T17:22:02.268+0200    dropping: db_kurs_mongo.customers
+2019-08-24T17:22:02.284+0200    3 document(s) imported successfully. 0 document(s) failed to import.
+
+> use db_kurs_mongo
+switched to db db_kurs_mongo
+> db.orders.find()
+{ "_id" : 1004, "items" : [ 4, 56, 9 ], "customer_id" : 2 }
+{ "_id" : 1001, "items" : [ 4, 56, 2 ], "customer_id" : 1 }
+{ "_id" : 1003, "items" : [ 10, 2, 45 ], "customer_id" : 2 }
+{ "_id" : 1002, "items" : [ 54, 3, 22 ], "customer_id" : 3 }
+> db.customers.find()
+{ "_id" : 2, "name" : "Pawe³ Fizyk", "email" : "pfiz@somerandomemail.com", "phone" : "34-000-111-222" }
+{ "_id" : 3, "name" : "Krzysztof Nowak", "email" : "know@anotherrandomemail.com", "phone" : "424-411-909" }
+{ "_id" : 1, "name" : "Jan Kowalski", "email" : "jkow@strefakursow.pl", "phone" : "040-456-000" }
+
+agregacja po³¹czenie danych z ró¿nych kolekcji
+
+> db.orders.aggregate( [
+... {$lookup: {
+... from: "customers", localField: "customer_id", foreignField: "_id", "as": "customer_details"
+... }}
+... ])
+{ "_id" : 1004, "items" : [ 4, 56, 9 ], "customer_id" : 2, "customer_details" : [ { "_id" : 2, "name" : "Pawe³ Fizyk", "email" : "pfiz@somerandomemail.com", "phone" : "34-000-111-222" } ] }
+{ "_id" : 1001, "items" : [ 4, 56, 2 ], "customer_id" : 1, "customer_details" : [ { "_id" : 1, "name" : "Jan Kowalski", "email" : "jkow@strefakursow.pl", "phone" : "040-456-000" } ] }
+{ "_id" : 1003, "items" : [ 10, 2, 45 ], "customer_id" : 2, "customer_details" : [ { "_id" : 2, "name" : "Pawe³ Fizyk", "email" : "pfiz@somerandomemail.com", "phone" : "34-000-111-222" } ] }
+{ "_id" : 1002, "items" : [ 54, 3, 22 ], "customer_id" : 3, "customer_details" : [ { "_id" : 3, "name" : "Krzysztof Nowak", "email" : "know@anotherrandomemail.com", "phone" : "424-411-909" } ] }
+
+wybór losowych dokumentów
+
+> db.products.aggregate(
+... [ {$sample: { size: 2}}]
+... )
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+
+> db.products.aggregate( [ {$sample: { size: 1}}] )
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "category" : "software", "price" : 59, "stock" : 56, "attributes" : { "os" : "osx", "licence" : "home" } }
+
+dane zawieraj¹ce koordynaty
+np geograficzne
+
+C:\>mongoimport --db db_kurs_mongo --collection cities --drop --file d:/MongoDBNowoczesneBazyDanych/json_pliki/cities.json
+2019-08-24T17:42:25.905+0200    connected to: mongodb://localhost/
+2019-08-24T17:42:25.933+0200    dropping: db_kurs_mongo.cities
+2019-08-24T17:42:25.950+0200    5 document(s) imported successfully. 0 document(s) failed to import.
+
+> use db_kurs_mongo
+switched to db db_kurs_mongo
+
+> db.cities.find()
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad0"), "name" : "Kraków", "loc" : { "type" : "Point", "coordinates" : [ 19.9633141, 50.0551723 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad1"), "name" : "Warszawa", "loc" : { "type" : "Point", "coordinates" : [ 21.0322634, 52.2461433 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad2"), "name" : "Poznañ", "loc" : { "type" : "Point", "coordinates" : [ 16.8893091, 52.405394 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad3"), "name" : "Wroc³aw", "loc" : { "type" : "Point", "coordinates" : [ 17.0301622, 51.1176867 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad4"), "name" : "Gdañsk", "loc" : { "type" : "Point", "coordinates" : [ 18.6686523, 54.3679106 ] } }
+> db.cities.createIndex({loc: "2dsphere"})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}
+
+> db.cities.find( { loc:
+... { $near: { $geometry: {type: "Point", coordinates: [ 21.0322634, 52.2461433 ] },
+... $maxDistance: 200000}}
+... })
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad1"), "name" : "Warszawa", "loc" : { "type" : "Point", "coordinates" : [ 21.0322634, 52.2461433 ] } }
+
+> db.cities.find( { loc: { $near: { $geometry: {type: "Point", coordinates: [ 21.0322634, 52.2461433 ] }, $maxDistance: 280000}} })
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad1"), "name" : "Warszawa", "loc" : { "type" : "Point", "coordinates" : [ 21.0322634, 52.2461433 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad0"), "name" : "Kraków", "loc" : { "type" : "Point", "coordinates" : [ 19.9633141, 50.0551723 ] } }
+
+> db.cities.find( { loc: { $near: { $geometry: {type: "Point", coordinates: [ 21.0322634, 52.2461433 ] }, $maxDistance: 300000}} })
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad1"), "name" : "Warszawa", "loc" : { "type" : "Point", "coordinates" : [ 21.0322634, 52.2461433 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad0"), "name" : "Kraków", "loc" : { "type" : "Point", "coordinates" : [ 19.9633141, 50.0551723 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad2"), "name" : "Poznañ", "loc" : { "type" : "Point", "coordinates" : [ 16.8893091, 52.405394 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad4"), "name" : "Gdañsk", "loc" : { "type" : "Point", "coordinates" : [ 18.6686523, 54.3679106 ] } }
+
+> db.cities.find( { loc: { $near: { $geometry: {type: "Point", coordinates: [ 21.0322634, 52.2461433 ] }, $maxDistance: 350000}} })
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad1"), "name" : "Warszawa", "loc" : { "type" : "Point", "coordinates" : [ 21.0322634, 52.2461433 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad0"), "name" : "Kraków", "loc" : { "type" : "Point", "coordinates" : [ 19.9633141, 50.0551723 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad2"), "name" : "Poznañ", "loc" : { "type" : "Point", "coordinates" : [ 16.8893091, 52.405394 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad4"), "name" : "Gdañsk", "loc" : { "type" : "Point", "coordinates" : [ 18.6686523, 54.3679106 ] } }
+{ "_id" : ObjectId("5d615ae1b4a7207200076ad3"), "name" : "Wroc³aw", "loc" : { "type" : "Point", "coordinates" : [ 17.0301622, 51.1176867 ] } }
+
+U¿ytkownicy i ich uprawnienia
+
+> use db_kurs_mongo
+switched to db db_kurs_mongo
+> db.createUser({
+... user: "newUser",
+... pwd: "1234",
+... roles: [{role: "read", db: "db_kurs_mongo"}]
+... })
+Successfully added user: {
+        "user" : "newUser",
+        "roles" : [
+                {
+                        "role" : "read",
+                        "db" : "db_kurs_mongo"
+                }
+        ]
+}
+
+C:\Users\DELL>mongod --auth
+
+> db.auth("newUser","1234")
+1
+
+Nosqlclient.exe
+
+eksport bazy danych - kopia
+
+D:\Mongo_NodeJS>mongodump --db db_kurs_mongo
+2019-08-25T00:07:10.229+0200    writing db_kurs_mongo.products to
+2019-08-25T00:07:10.260+0200    writing db_kurs_mongo.cities to
+2019-08-25T00:07:10.263+0200    writing db_kurs_mongo.categoies to
+2019-08-25T00:07:10.266+0200    writing db_kurs_mongo.orders to
+2019-08-25T00:07:10.271+0200    done dumping db_kurs_mongo.products (13 documents)
+2019-08-25T00:07:10.272+0200    writing db_kurs_mongo.scores to
+2019-08-25T00:07:10.274+0200    done dumping db_kurs_mongo.categoies (4 documents)
+2019-08-25T00:07:10.277+0200    writing db_kurs_mongo.customers to
+2019-08-25T00:07:10.286+0200    done dumping db_kurs_mongo.customers (3 documents)
+2019-08-25T00:07:10.287+0200    writing db_kurs_mongo.people to
+2019-08-25T00:07:10.291+0200    done dumping db_kurs_mongo.scores (3 documents)
+2019-08-25T00:07:10.291+0200    writing db_kurs_mongo.items to
+2019-08-25T00:07:10.297+0200    done dumping db_kurs_mongo.people (2 documents)
+2019-08-25T00:07:10.298+0200    writing db_kurs_mongo.clients to
+2019-08-25T00:07:10.301+0200    done dumping db_kurs_mongo.items (2 documents)
+2019-08-25T00:07:10.301+0200    writing db_kurs_mongo.articles to
+2019-08-25T00:07:10.306+0200    done dumping db_kurs_mongo.clients (1 document)
+2019-08-25T00:07:10.306+0200    writing db_kurs_mongo.producers to
+2019-08-25T00:07:10.310+0200    done dumping db_kurs_mongo.articles (1 document)
+2019-08-25T00:07:10.311+0200    writing db_kurs_mongo.logs to
+2019-08-25T00:07:10.314+0200    done dumping db_kurs_mongo.logs (0 documents)
+2019-08-25T00:07:10.318+0200    done dumping db_kurs_mongo.producers (1 document)
+2019-08-25T00:07:10.585+0200    done dumping db_kurs_mongo.orders (4 documents)
+2019-08-25T00:07:10.585+0200    done dumping db_kurs_mongo.cities (5 documents)
+
+import bazy z kopii
+
+D:\Mongo_NodeJS> mongorestore --db nowa_baza dump/db_kurs_mongo
+2019-08-25T00:11:21.322+0200    the --db and --collection args should only be used when restoring from a BSON file. Other uses are deprecated and will not exist in the future; use --nsInclude instead
+2019-08-25T00:11:21.345+0200    building a list of collections to restore from dump\db_kurs_mongo dir
+2019-08-25T00:11:21.351+0200    reading metadata for nowa_baza.products from dump\db_kurs_mongo\products.metadata.json
+2019-08-25T00:11:21.352+0200    reading metadata for nowa_baza.scores from dump\db_kurs_mongo\scores.metadata.json
+2019-08-25T00:11:21.353+0200    reading metadata for nowa_baza.customers from dump\db_kurs_mongo\customers.metadata.json
+2019-08-25T00:11:21.355+0200    reading metadata for nowa_baza.cities from dump\db_kurs_mongo\cities.metadata.json
+2019-08-25T00:11:21.366+0200    restoring nowa_baza.products from dump\db_kurs_mongo\products.bson
+2019-08-25T00:11:21.372+0200    restoring indexes for collection nowa_baza.products from metadata
+2019-08-25T00:11:21.455+0200    finished restoring nowa_baza.products (13 documents, 0 failures)
+2019-08-25T00:11:21.455+0200    reading metadata for nowa_baza.orders from dump\db_kurs_mongo\orders.metadata.json
+2019-08-25T00:11:21.469+0200    restoring nowa_baza.orders from dump\db_kurs_mongo\orders.bson
+2019-08-25T00:11:21.471+0200    no indexes to restore
+2019-08-25T00:11:21.472+0200    finished restoring nowa_baza.orders (4 documents, 0 failures)
+2019-08-25T00:11:21.472+0200    reading metadata for nowa_baza.articles from dump\db_kurs_mongo\articles.metadata.json
+2019-08-25T00:11:21.482+0200    restoring nowa_baza.articles from dump\db_kurs_mongo\articles.bson
+2019-08-25T00:11:21.493+0200    no indexes to restore
+2019-08-25T00:11:21.493+0200    finished restoring nowa_baza.articles (1 document, 0 failures)
+2019-08-25T00:11:21.494+0200    reading metadata for nowa_baza.categoies from dump\db_kurs_mongo\categoies.metadata.json
+2019-08-25T00:11:21.509+0200    restoring nowa_baza.categoies from dump\db_kurs_mongo\categoies.bson
+2019-08-25T00:11:21.518+0200    no indexes to restore
+2019-08-25T00:11:21.518+0200    finished restoring nowa_baza.categoies (4 documents, 0 failures)
+2019-08-25T00:11:21.519+0200    reading metadata for nowa_baza.items from dump\db_kurs_mongo\items.metadata.json
+2019-08-25T00:11:21.535+0200    restoring nowa_baza.items from dump\db_kurs_mongo\items.bson
+2019-08-25T00:11:21.544+0200    no indexes to restore
+2019-08-25T00:11:21.545+0200    finished restoring nowa_baza.items (2 documents, 0 failures)
+2019-08-25T00:11:21.545+0200    reading metadata for nowa_baza.clients from dump\db_kurs_mongo\clients.metadata.json
+2019-08-25T00:11:21.561+0200    restoring nowa_baza.clients from dump\db_kurs_mongo\clients.bson
+2019-08-25T00:11:21.564+0200    no indexes to restore
+2019-08-25T00:11:21.564+0200    finished restoring nowa_baza.clients (1 document, 0 failures)
+2019-08-25T00:11:21.565+0200    reading metadata for nowa_baza.people from dump\db_kurs_mongo\people.metadata.json
+2019-08-25T00:11:21.575+0200    restoring nowa_baza.people from dump\db_kurs_mongo\people.bson
+2019-08-25T00:11:21.582+0200    no indexes to restore
+2019-08-25T00:11:21.582+0200    finished restoring nowa_baza.people (2 documents, 0 failures)
+2019-08-25T00:11:21.583+0200    reading metadata for nowa_baza.producers from dump\db_kurs_mongo\producers.metadata.json
+2019-08-25T00:11:21.596+0200    restoring nowa_baza.producers from dump\db_kurs_mongo\producers.bson
+2019-08-25T00:11:21.603+0200    no indexes to restore
+2019-08-25T00:11:21.603+0200    finished restoring nowa_baza.producers (1 document, 0 failures)
+2019-08-25T00:11:21.604+0200    reading metadata for nowa_baza.logs from dump\db_kurs_mongo\logs.metadata.json
+2019-08-25T00:11:21.618+0200    restoring nowa_baza.logs from dump\db_kurs_mongo\logs.bson
+2019-08-25T00:11:21.624+0200    restoring indexes for collection nowa_baza.logs from metadata
+2019-08-25T00:11:21.645+0200    finished restoring nowa_baza.logs (0 documents, 0 failures)
+2019-08-25T00:11:21.671+0200    restoring nowa_baza.scores from dump\db_kurs_mongo\scores.bson
+2019-08-25T00:11:21.683+0200    restoring nowa_baza.customers from dump\db_kurs_mongo\customers.bson
+2019-08-25T00:11:21.685+0200    no indexes to restore
+2019-08-25T00:11:21.685+0200    restoring nowa_baza.cities from dump\db_kurs_mongo\cities.bson
+2019-08-25T00:11:21.686+0200    no indexes to restore
+2019-08-25T00:11:21.688+0200    finished restoring nowa_baza.customers (3 documents, 0 failures)
+2019-08-25T00:11:21.689+0200    finished restoring nowa_baza.scores (3 documents, 0 failures)
+2019-08-25T00:11:21.690+0200    restoring indexes for collection nowa_baza.cities from metadata
+2019-08-25T00:11:21.710+0200    finished restoring nowa_baza.cities (5 documents, 0 failures)
+2019-08-25T00:11:21.710+0200    39 document(s) restored successfully. 0 document(s) failed to restore.
+
+
+Zaimportowana
+
+> mongo
+> use nowa_baza
+switched to db nowa_baza
+> db.products.find()
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0864"), "name" : "Intech Professional", "category" : "software", "price" : 1200, "stock" : 4, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0865"), "name" : "Warmsoft Express", "category" : "software", "price" : 199, "stock" : 151, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0866"), "name" : "Sancom X10", "category" : "phones", "price" : 449, "stock" : 10, "attributes" : { "os" : "android", "memory" : 8 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0867"), "name" : "Tech Tamdex USB", "category" : "accessories", "view" : 2, "price" : 60, "stock" : 120, "attributes" : { "type" : "keyboard" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0868"), "name" : "Quofan 2016", "category" : "software", "price" : 59, "stock" : 56, "attributes" : { "os" : "osx", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b0869"), "name" : "Lamfix Home Edition", "category" : "software", "price" : 120, "stock" : 80, "attributes" : { "os" : "windows", "licence" : "home" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086a"), "name" : "Freeplus Mouse", "category" : "accessories", "price" : 49, "stock" : 167, "attributes" : { "type" : "mouse" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086b"), "name" : "Silverwarm PC Case", "category" : "accessories", "price" : 120, "stock" : 30, "attributes" : { "type" : "pc-case" } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086c"), "name" : "Yearlam 2", "category" : "phones", "price" : 399, "stock" : 23, "attributes" : { "os" : "Android", "memory" : 4 } }
+{ "_id" : ObjectId("5d5d9fb65a652f64682b086d"), "name" : "Scotfresh Vision", "category" : "displays", "price" : 799, "stock" : 4, "attributes" : { "size" : 24, "interface" : "hdmi" } }
+{ "_id" : ObjectId("5d6013c94e7b0f6997d5564b"), "name" : "Sancom X10 accessories", "category" : "usb driver" }
+{ "_id" : ObjectId("5d61a0039e7c7e33e8695807"), "name" : "X-New Product", "price" : 250, "category" : "software", "stock" : 35, "attributes" : { "os" : "windows", "licence" : "enterprise" } }
+{ "_id" : ObjectId("5d61a2fdc165953f7c4a4cda"), "name" : "Y-New Product 3", "price" : 100, "category" : "software", "stock" : 19, "attributes" : { "os" : "osx", "licence" : "home" } }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
